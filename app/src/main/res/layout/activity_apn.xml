@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ApnActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="click78"
+        android:text="获取iccid"
+
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/et_iccid"
+        android:layout_width="match_parent"
+        android:hint="显示第一个卡槽iccid"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/et_iccid2"
+        android:layout_width="match_parent"
+        android:textSize="12sp"
+        android:hint="获取的是卡槽1的iccid,尽量不要装两张卡获取,司法只能用卡一"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:onClick="click79"
+        android:layout_width="wrap_content"
+        android:text="获取apn信息"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/et_apn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="展示apn信息"
+        />
+
+</LinearLayout>

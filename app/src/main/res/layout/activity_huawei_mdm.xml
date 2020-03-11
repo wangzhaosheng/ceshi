@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mdmHuawei.HuaweiMdmActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="使用摄像头"
+                android:onClick="click62"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="禁用摄像头"
+                android:onClick="click63"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="获取是否允许摄像头"
+                android:onClick="click65"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="允许使用热点"
+                android:onClick="click68"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="不允许使用热点"
+                android:onClick="click69"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="新增apn,获取apnid,并设置apn(部标)"
+                android:onClick="click72"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="张地的apn增加并设置测试代码"
+                android:onClick="click73"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="删除自己增加的apn"
+                android:onClick="click74"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="查询apn list"
+                android:onClick="click75"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="允许定位"
+                android:onClick="click80"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="禁止定位"
+                android:onClick="click81"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="强制定位"
+                android:onClick="click82"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="先允许再强制定位"
+                android:onClick="click83"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="强制关闭移动数据"
+                android:onClick="click84"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="强制打开移动数据"
+                android:onClick="click85"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="跟随用户打开移动数据"
+                android:onClick="click86"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="禁止打开wifi"
+                android:onClick="click87"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="只允许终端进行无线网络指纹扫描，但无法进行无线网络连	接"
+                android:onClick="click88"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="允许打开wifi"
+                android:onClick="click89"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥静默打开wifi"
+                android:onClick="click90"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="部标允许使用蓝牙"
+                android:onClick="click91"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="设置蓝牙白名单"
+                android:onClick="click92"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="获取蓝牙的模式"
+                android:onClick="click93"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥打开定位"
+                android:onClick="click94"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥关闭定位"
+                android:onClick="click95"
+                android:layout_height="wrap_content"/>
+
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥允许定位"
+                android:onClick="click117"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥禁止定位"
+                android:onClick="click118"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥打开飞行模式"
+                android:onClick="click111"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥关闭飞行模式"
+                android:onClick="click112"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥强制打开飞行模式"
+                android:onClick="click114"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥强制关闭飞行模式"
+                android:onClick="click115"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥飞行模式设置为-1"
+                android:onClick="click116"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥获取飞行模式值"
+                android:onClick="click113"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥允许使用蓝牙"
+                android:onClick="click119"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥禁止使用蓝牙"
+                android:onClick="click120"
+                android:layout_height="wrap_content"/>
+
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥新增蓝牙白名单"
+                android:onClick="click121"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥允许使用蓝牙白名单"
+                android:onClick="click122"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥禁止使用蓝牙白名单"
+                android:onClick="click126"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥获取是否允许使用蓝牙白名单"
+                android:onClick="click123"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥移除蓝牙白名单"
+                android:onClick="click124"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="鼎桥查询所有白名单mac地址"
+                android:onClick="click125"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+</RelativeLayout>

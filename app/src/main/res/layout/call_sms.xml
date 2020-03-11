@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:onClick="click21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="监听通话记录并获取" />
+
+        <Button
+            android:id="@+id/click1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click1"
+            android:text="获取通话记录" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click7"
+            android:text="插入通话记录（若干条）" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click19"
+            android:layout_height="wrap_content"
+            android:text="插入短信记录（若干条）" />
+
+        <Button
+            android:id="@+id/click2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click2"
+            android:text="获取卡槽数据库" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click4"
+            android:text="获取短信数据库" />
+
+        <Button
+            android:onClick="click24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取短信thread表" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click23"
+            android:layout_height="wrap_content"
+            android:text="监听短信数据库并获取" />
+
+        <Button
+            android:onClick="click20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置短信默认应用" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click22"
+            android:text="插入短信条数输入框输入" />
+        <EditText
+
+            android:id="@+id/et_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="插入短信条数"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click5"
+            android:text="获取彩信数据库主表" />
+
+        <Button
+            android:onClick="click17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取彩信数据库主表加彩信addr表" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click6"
+            android:text="获取彩信数据库part表(获取彩信附件)" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click3"
+            android:text="监听彩信数据库变化并查询相关part表addr表" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click8"
+            android:text="获取imei imsi" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click29"
+            android:text="获取系统联系人数据库contacts主表" />
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click34"
+            android:text="监听并获取系统联系人数据库contacts主表" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click30"
+            android:text="获取系统联系人数据库raw_contacts表" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click31"
+            android:text="获取系统联系人数据库data表" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click32"
+            android:text="监听数据库变化获取系统联系人数据库data表" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click33"
+            android:text="获取系统联系人数据库群组表" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click15"
+            android:text="删除本地sqlite" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click16"
+            android:text="查询本地sqlite" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click18"
+            android:text="新增本地sqlite" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="TextView" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click58"
+            android:text="获取通讯录列表"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click59"
+            android:text="删除通讯录部分数据"
+
+            />
+    </LinearLayout>
+
+</ScrollView>
