@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Environment;
 import android.os.Looper;
 import android.provider.Settings;
 import android.provider.Telephony;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.AA;
 import com.example.myapplication.IOUtils;
-import com.example.myapplication.MyMediaRecorder;
+import com.example.myapplication.diaoyan.FileSizeUtil;
+import com.example.myapplication.record.MediaRecorderManager;
+import com.example.myapplication.record.MediaRecorderReceiver;
 import com.example.myapplication.R;
 
 import jni.JniTest;
@@ -31,9 +34,7 @@ import jni.JniTest;
 import com.example.myapplication.diaoyan.BABA;
 import com.example.myapplication.diaoyan.ERZI;
 import com.example.myapplication.diaoyan.TestT;
-import com.example.myapplication.diaoyan.YEYE;
 import com.example.myapplication.factory.SmsFactory;
-import com.example.myapplication.proxy.IPrinter;
 import com.example.myapplication.proxy.ISay;
 import com.example.myapplication.proxy.Printer;
 import com.example.myapplication.proxy.ProxyHandler;
@@ -43,15 +44,17 @@ import com.example.myapplication.service.ServiceUtils;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.style.Circle;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DiaoYanActivity extends AppCompatActivity {
 
@@ -160,10 +163,32 @@ public class DiaoYanActivity extends AppCompatActivity {
 
 
     }
-
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
     public void click47(View view) {
 
-        MyMediaRecorder.getInstance().start("/sdcard/aaa.amr");
+//        MediaRecorderReceiver.getInstance().start("/sdcard/aaa.amr");
+//        MediaRecorderReceiver.getInstance().startRecord("");
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                mediaRecorderManager.record("/sdcard/"+System.currentTimeMillis()+"aaa.amr");
+            }
+        });
+    }
+
+    MediaRecorderManager mediaRecorderManager=new MediaRecorderManager();
+    public void click127(View view) {
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                mediaRecorderManager.stopRecord();
+            }
+        });
+
+
     }
 
     public void click48(View view) {
@@ -383,6 +408,53 @@ public class DiaoYanActivity extends AppCompatActivity {
         String resourceEntryName = getResources().getResourceEntryName(R.layout.activity_diao_yan);
     }
 
+    public void click128(View view) {
+
+//        File externalStorageDirectory = Environment.getExternalStorageDirectory();
+//        String absolutePath = externalStorageDirectory.getAbsolutePath();
+//        String b=absolutePath+File.separator+"aa.txt";
+//        System.out.println(absolutePath);
+//        String[] strings = readToString(b);
+//        System.out.println(strings);
+        File externalFilesDir = getExternalFilesDir(null);
+        externalFilesDir.mkdirs();
+        File cacheDir = getCacheDir();
+        cacheDir.mkdirs();
+        String autoFileOrFilesSize = FileSizeUtil.getAutoFileOrFilesSize(Environment.getExternalStorageDirectory().getAbsolutePath());
+        String autoFileOrFilesSize1 = FileSizeUtil.getAutoFileOrFilesSize(this.getExternalFilesDir(null).getAbsolutePath());
+        String autoFileOrFilesSize2 = FileSizeUtil.getAutoFileOrFilesSize(this.getCacheDir().getAbsolutePath());
+        System.out.println(autoFileOrFilesSize2);
+    }
+
+
+    /**
+     * 读取filePath的文件，将文件中的数据按照行读取到String数组中
+     * @param filePath    文件的路径
+     * @return            文件中一行一行的数据
+     */
+    public static String[] readToString(String filePath)
+    {
+        File file = new File(filePath);
+        Long filelength = file.length(); // 获取文件长度
+        byte[] filecontent = new byte[filelength.intValue()];
+        try
+        {
+            FileInputStream in = new FileInputStream(file);
+            in.read(filecontent);
+            in.close();
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        String[] fileContentArr = new String(filecontent).split("\r\n");
+
+        return fileContentArr;// 返回文件内容,默认编码
+    }
+
 
     private class MyReceiver extends BroadcastReceiver {
         @Override
@@ -470,4 +542,6 @@ public class DiaoYanActivity extends AppCompatActivity {
         super.onDestroy();
 //        unregisterReceiver(myReceiver);
     }
+
+
 }

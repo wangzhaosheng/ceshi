@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="140dp"
+    android:paddingBottom="40dp"
     >
 
 
@@ -95,6 +95,15 @@
             android:layout_height="wrap_content"
             android:onClick="click47"
             android:text="调用系统录音"
+
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click127"
+            android:text="停止系统录音"
 
             />
 
@@ -197,6 +206,13 @@
             android:layout_height="wrap_content"
             android:onClick="click67"
             android:text="获取layout 名称"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click128"
+            android:text="读取sd卡"
 
             />
 

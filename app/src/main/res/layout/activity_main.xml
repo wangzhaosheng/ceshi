@@ -65,6 +65,11 @@
         android:layout_height="wrap_content"
         android:onClick="click36"
         android:text="调研界面" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click129"
+        android:text="调研界面2" />
 
     <Button
         android:layout_width="match_parent"

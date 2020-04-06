@@ -20,6 +20,7 @@ import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.provider.Telephony;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -31,6 +32,8 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.myapplication.activity.FingerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -1033,6 +1036,202 @@ public class CallSmsActivity extends AppCompatActivity {
         }
         deleteContacts(contacts);
     }
+
+
+
+    public void click134(View view) {
+        ContentResolver resolver = getContentResolver();
+        String[] projection = {
+                //time
+                MediaStore.Images.Media.DATE_ADDED,//精确到秒
+                //路径
+                MediaStore.Images.Media.DATA,
+                //name
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.MIME_TYPE,
+                //"source": 1, //来源（自带相机/微信或QQ/设备截屏）   1：系统相册   注：暂定全部是系统相册，等待客户端调研能否细分
+                //source 问题比较复杂  MediaStore.Images.Media.BUCKET_DISPLAY_NAME  字段
+                //
+                //size 字节为单位
+                MediaStore.Images.Media.SIZE
+        };
+        String sortOrder = BaseColumns._ID + " desc limit 10 ";
+        Cursor cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, sortOrder);
+
+        int count = cursor.getCount();
+        int columnCount = cursor.getColumnCount();
+        System.out.println("isBeforeFirst"+cursor.isBeforeFirst());
+        System.out.println("isfirst"+cursor.isFirst());
+        System.out.println("isLast"+cursor.isLast());
+        System.out.println("isAfterLast"+cursor.isAfterLast());
+
+
+
+        while (cursor.moveToNext()) {
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < columnCount; i++) {
+                try {
+                    jsonObject.put(cursor.getColumnName(i), cursor.getString(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            System.out.println(jsonObject);
+            int columnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+//            int id2 = cursor.getInt(cursor.getColumnIndex(" id"));
+//            System.out.println(id2);
+            String columnName = cursor.getColumnName(0);
+            System.out.println(columnName);
+        }
+    }
+
+
+
+
+    public void click136(View view) {
+
+
+        getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, true, new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+
+
+            }
+
+            @Override
+            public void onChange(boolean selfChange, Uri uri) {
+                super.onChange(selfChange, uri);
+                System.out.println("-------"+ uri);
+                click134(null);
+            }
+        });
+    }
+
+
+    public void click135(View view) {
+        ContentResolver resolver = getContentResolver();
+        String[] projection = {
+
+
+
+                //路径
+                MediaStore.Video.Media.DATA,
+                ////精确到秒  time
+                MediaStore.Video.Media.DATE_ADDED,
+                //name
+                MediaStore.Video.Media.DISPLAY_NAME,
+
+                //"source": 1, //来源（自带相机/微信或QQ/设备截屏）   1：系统相册   注：暂定全部是系统相册，等待客户端调研能否细分
+                //source 问题比较复杂  MediaStore.Images.Media.BUCKET_DISPLAY_NAME  字段
+                //size 字节为单位
+                MediaStore.Video.Media.SIZE
+        };
+        String sortOrder = BaseColumns._ID + " desc limit 10 ";
+        Cursor cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, projection, null, null, null);
+
+        int count = cursor.getCount();
+        int columnCount = cursor.getColumnCount();
+        System.out.println("isBeforeFirst"+cursor.isBeforeFirst());
+        System.out.println("isfirst"+cursor.isFirst());
+        System.out.println("isLast"+cursor.isLast());
+        System.out.println("isAfterLast"+cursor.isAfterLast());
+
+
+
+        while (cursor.moveToNext()) {
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < columnCount; i++) {
+                try {
+                    jsonObject.put(cursor.getColumnName(i), cursor.getString(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            System.out.println(jsonObject);
+
+
+        }
+    }
+
+    public void click137(View view) {
+
+        getContentResolver().registerContentObserver(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, true, new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+
+
+            }
+
+            @Override
+            public void onChange(boolean selfChange, Uri uri) {
+                super.onChange(selfChange, uri);
+                System.out.println("-------"+ uri);
+                click135(null);
+            }
+        });
+    }
+
+    private void getPictures(List<FingerActivity.VideoInfo> list) {
+        String[] IMAGES = {
+                MediaStore.Images.Media.DATA,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.MIME_TYPE,
+                MediaStore.Images.Media.SIZE};
+        ContentResolver cr = getContentResolver();
+        Cursor cursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGES, null, null, null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(0);
+                String bucketName = cursor.getString(1);
+                String mimeType = cursor.getString(2);
+                long size = cursor.getLong(3);
+                Log.i("-->file", path + "," + bucketName + "," + mimeType + "," + size);
+
+                FingerActivity.VideoInfo videoInfo = new FingerActivity.VideoInfo();
+                videoInfo.setDisplayName(bucketName);
+                videoInfo.setPath(path);
+                videoInfo.setLastModifyTime(new File(path).lastModified());
+                videoInfo.setSize(size);
+                list.add(videoInfo);
+            }
+            cursor.close();
+        }
+
+        Log.i("分隔", "\n\n\n\n\n\n \n\n\n\n\n");
+    }
+
+    private void getVideos(List<FingerActivity.VideoInfo> list) {
+        String[] IMAGES = {
+                MediaStore.Video.Media.DATA,
+                MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Video.Media.MIME_TYPE,
+                MediaStore.Video.Media.SIZE};
+        ContentResolver cr = getContentResolver();
+        Cursor cursor = cr.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, IMAGES, null, null, null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(0);
+                String bucketName = cursor.getString(1);
+                String mimeType = cursor.getString(2);
+                long size = cursor.getLong(3);
+                Log.i("-->file", path + "," + bucketName + "," + mimeType + "," + size);
+
+                FingerActivity.VideoInfo videoInfo = new FingerActivity.VideoInfo();
+                videoInfo.setDisplayName(bucketName);
+                videoInfo.setPath(path);
+                videoInfo.setLastModifyTime(new File(path).lastModified());
+                videoInfo.setSize(size);
+                list.add(videoInfo);
+            }
+            cursor.close();
+        }
+    }
+
 
 
     private class DatabaseHelper extends SQLiteOpenHelper {

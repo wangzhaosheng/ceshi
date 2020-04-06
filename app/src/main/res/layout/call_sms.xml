@@ -189,6 +189,39 @@
             android:text="删除通讯录部分数据"
 
             />
+
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click134"
+            android:text="获取相册图片"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click135"
+            android:text="获取相册视频"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click136"
+            android:text="监听并获取相册图片"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click137"
+            android:text="监听并获取相册视频"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </ScrollView>

@@ -46,6 +46,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ApnActivity;
+import com.example.myapplication.activity.DiaoYan2Activity;
 import com.example.myapplication.activity.DiaoYanActivity;
 import com.example.myapplication.activity.UtilActivity;
 import com.example.myapplication.mdmHuawei.HuaweiMdmActivity;
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.wifi.WIFI_AP_STATE_CHANGED");
         registerReceiver(new HotsspotReceiver(), intentFilter);
+
+
 
     }
 
@@ -357,6 +360,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void click36(View view) {
         startActivity(new Intent(this, DiaoYanActivity.class));
+    }
+    public void click129(View view) {
+        startActivity(new Intent(this, DiaoYan2Activity.class));
     }
 
     public void click64(View view) {

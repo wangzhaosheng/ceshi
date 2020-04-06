@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="40dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="140dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click130"
+            android:text="监听长按电源键"
+            android:layout_height="wrap_content"/>
+
+
+
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:onClick="click131"-->
+<!--            android:text="queryUsageStats获取应用使用统计"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click132"
+            android:text="queryEvents查应用使用事件"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click133"
+            android:text="funtion接口"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+</ScrollView>
