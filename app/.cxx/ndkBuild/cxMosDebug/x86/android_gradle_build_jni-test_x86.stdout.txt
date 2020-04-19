@@ -1,0 +1,3 @@
+[x86] Compile++      : jni-test <= test.cpp
+[x86] StaticLibrary  : libstdc++.a
+[x86] SharedLibrary  : libjni-test.so

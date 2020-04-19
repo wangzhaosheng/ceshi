@@ -1,0 +1,34 @@
+{
+  "buildFiles": [
+    "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk",
+    "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/lib clean"
+  ],
+  "buildTargetsCommand": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/lib {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "jni-test-cxMosDebug-arm64-v8a": {
+      "buildCommand": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/lib /Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj/local/arm64-v8a/libjni-test.so",
+      "toolchain": "toolchain-arm64-v8a",
+      "abi": "arm64-v8a",
+      "artifactName": "jni-test",
+      "files": [
+        {
+          "src": "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/test.cpp",
+          "flags": "-target aarch64-none-linux-android21 -fdata-sections -ffunction-sections -fstack-protector-strong -funwind-tables -no-canonical-prefixes --sysroot /Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -g -Wno-invalid-command-line-argument -Wno-unused-command-line-argument -fno-addrsig -fno-exceptions -fno-rtti -fpic -O0 -UNDEBUG -fno-limit-debug-info -fno-experimental-isel -I/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/sources/cxx-stl/system/include -I/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security"
+        }
+      ],
+      "output": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj/local/arm64-v8a/libjni-test.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-arm64-v8a": {
+      "cppCompilerExecutable": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -1,0 +1,3 @@
+[arm64-v8a] Compile++      : jni-test <= test.cpp
+[arm64-v8a] StaticLibrary  : libstdc++.a
+[arm64-v8a] SharedLibrary  : libjni-test.so

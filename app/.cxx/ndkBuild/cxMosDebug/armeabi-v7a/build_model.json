@@ -1,0 +1,60 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "/Users/wangzhaosheng/ceshi/ceshi",
+      "sdkFolder": "/Users/wangzhaosheng/androidSDK",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "/Users/wangzhaosheng/ceshi/ceshi/app",
+      "makeFile": "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk",
+      "buildSystem": "NDK_BUILD",
+      "compilerSettingsCacheFolder": "/Users/wangzhaosheng/ceshi/ceshi/.cxx",
+      "cxxFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx",
+      "ndkFolder": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944",
+      "ndkVersion": "20.1.5948944",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "cxMosDebug",
+    "soFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/lib",
+    "objFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj/local",
+    "jsonFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug",
+    "gradleBuildOutputFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/cxx/cxMosDebug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 21,
+  "cxxBuildFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a",
+  "jsonFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/android_gradle_build.json",
+  "gradleBuildOutputFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/cxx/cxMosDebug/armeabi-v7a",
+  "objFolder": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosDebug/obj/local/armeabi-v7a",
+  "buildCommandFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/build_command.txt",
+  "buildOutputFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/build_output.txt",
+  "modelOutputFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/build_model.json",
+  "jsonGenerationLoggingRecordFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/json_generation_record.json",
+  "compileCommandsJsonFile": "/Users/wangzhaosheng/ceshi/ceshi/app/.cxx/ndkBuild/cxMosDebug/armeabi-v7a/compile_commands.json"
+}
