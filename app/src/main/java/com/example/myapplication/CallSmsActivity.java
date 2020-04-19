@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.CallLog;
+import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Telephony;
@@ -340,11 +341,6 @@ public class CallSmsActivity extends AppCompatActivity {
         };
 //      queryRow(projectionOppo);
 
-
-
-
-
-
         ContentResolver resolver = getContentResolver();
 
         String selection = Telephony.Sms.TYPE + " =? or " + Telephony.Sms.TYPE + " =?";
@@ -363,12 +359,17 @@ public class CallSmsActivity extends AppCompatActivity {
 
             }
             System.out.println(jsonObject);
+
+            //测试代码,用完删除
+            System.out.println("联系人名称"+ cursor.getString(cursor.getColumnIndex(Telephony.Sms.PERSON)));
         }
     }
     public void click23(View v) throws JSONException {
-        getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, new ContentObserver(new Handler()) {
+//        getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, new ContentObserver(new Handler()) {
+        getContentResolver().registerContentObserver(Telephony.Sms.CONTENT_URI, true, new ContentObserver(new Handler()) {
             @Override
             public void onChange(boolean selfChange) {
+
                 super.onChange(selfChange);
                 String sortOrder = BaseColumns._ID + " desc limit 3";
                 String[] projection = new String[]{Telephony.Sms._ID, Telephony.Sms.TYPE, Telephony.Sms.ADDRESS, Telephony.Sms.DATE, Telephony.Sms.BODY};
@@ -1078,12 +1079,15 @@ public class CallSmsActivity extends AppCompatActivity {
 
             }
             System.out.println(jsonObject);
-            int columnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
-//            int id2 = cursor.getInt(cursor.getColumnIndex(" id"));
+//            int columnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+//            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+
+
+            String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            File file = new File(path);
 //            System.out.println(id2);
-            String columnName = cursor.getColumnName(0);
-            System.out.println(columnName);
+//            String columnName = cursor.getColumnName(0);
+            System.out.println("name"+file.getName());
         }
     }
 
@@ -1232,6 +1236,35 @@ public class CallSmsActivity extends AppCompatActivity {
         }
     }
 
+    public void click138(View view) {
+        String callName = getCallName("13810407417");
+        System.out.println("姓名"+callName);
+    }
+
+    /**
+     * 获取联系人
+     *
+     * @param phoneNumber
+     * @return
+     */
+    String getCallName(String phoneNumber) {
+        Cursor cursor = null;
+        String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME};
+        try {
+            Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+            ContentResolver resolver = this.getContentResolver();
+            cursor = resolver.query(uri, projection, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(0);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            IOUtils.closeQuietly(cursor);
+        }
+        return null;
+    }
 
 
     private class DatabaseHelper extends SQLiteOpenHelper {

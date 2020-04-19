@@ -53,7 +53,10 @@ import com.example.myapplication.mdmHuawei.HuaweiMdmActivity;
 import com.example.myapplication.sim.EmmAppOpsManager;
 import com.example.myapplication.wifi.HotsspotReceiver;
 import com.example.myapplication.wifi.WifiHotUtil;
+//import com.facebook.stetho.Stetho;
+//import com.facebook.stetho.common.Util;
 import com.google.gson.Gson;
+import com.ola.android22.mylibrary.Utils;
 import com.tdtech.devicemanager.LocationPolicy;
 
 import org.json.JSONArray;
@@ -126,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(new HotsspotReceiver(), intentFilter);
 
 
-
     }
 
 
@@ -167,8 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
         int permissionGranted = PERMISSION_GRANTED;
 //        Toast.makeText(this, "电话:　" + i + "  短信: " + i1, Toast.LENGTH_LONG).show();
-
-
+//        Stetho stetho;
 //        String a = "AA";
 //        byte[] bytes = a.getBytes();
 //        System.out.println(bytes);
@@ -226,76 +227,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void click200(View view) {
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_CALL);
-////        intent.setData(Uri.parse("tel:**61*" + "18201186417" + "%23")); // 无应答时进行呼叫转移
-////            intent.setData(Uri.parse("tel:**920" )); // 取消无应答时进行呼叫转移
-//        intent.setData(Uri.parse("tel:*%2361%23")); // 无应答时进行呼叫转移
-//        startActivity(intent);
+//        Toast.makeText(this, Constants.AAA,1).show();
+        File file = new File("/sdcard/aaa");
+        File[] list = file.listFiles((dir, name) -> !name.startsWith(".") && name.endsWith(".amr"));
+//        String[] list = file.list();
+        System.out.println(list);
+        for (File s : list) {
+            System.out.println(s);
+        }
 
-//        SharedPreferences sp = getSharedPreferences("aa", MODE_PRIVATE);
-//        String bb = sp.getString("bb", null);
-//        System.out.println(bb);
-
-//        File file = new File("/sdcard/MIUI/sound_recorder/call_rec/");
-//////        File file = new File("/sdcard/aa/aa");
-//////        long l = file.lastModified();
-//////        System.out.println("=="+ l);
-//        File[] files = file.listFiles();
-//        int length = files.length;
-//        System.out.println(length);
-////        for (File file1 : files) {
-//////            long l = file1.lastModified();
-//////            System.out.println("---------"+l);
-////            String fileName = file1.getName();
-////
-////            String timeFormat = fileName.substring(fileName.lastIndexOf("_") + 1, fileName.lastIndexOf("."));
-////            SimpleDateFormat df_24=new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
-////            long l = formatToMillis(timeFormat, df_24, DEFAULT_TIME_ZONE);
-////            System.out.println("====="+l);
-////        }
-////        for (int i = 0; i < files.length; i++) {
-////
-////            if (i==1){
-////                continue;
-////            }
-////            System.out.println("======="+i);
-////        }
-//
-//
-//        AA a1 =new AA(15);
-//        AA a2 =new AA(18);
-//        AA a3 =new AA(6);
-//        AA a4 =new AA(5);
-//        AA a5 =new AA(9);
-//        AA a6 =new AA(48);
-//        ArrayList<AA> list = new ArrayList<>();
-//        boolean empty = list.isEmpty();
-////        list.add(a1);
-////        list.add(a2);
-////        list.add(a3);
-////        list.add(a4);
-////        list.add(a5);
-////        list.add(a6);
-////
-////        List<AA> aas = list.subList(3, 6);
-//
-//
-//        Collections.sort(list, new Comparator<AA>() {
-//            @Override
-//            public int compare(AA o1, AA o2) {
-//                final long v = o1.a - o2.a;
-//                if (v < 0) return -1;
-//                if (0 < v) return 1;
-//                return 0;
-//            }
-//        });
-//
-//        System.out.println(list);
 //
 //        int i = searchFirstLarger(list, new AA(14));
 //        System.out.println("========="+i);
-
+//          Toast.makeText(this, Utils.getDebug(),1).show();
     }
 
 

@@ -222,6 +222,11 @@
             android:onClick="click137"
             android:text="监听并获取相册视频"
             android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click138"
+            android:text="根据手机号获取姓名"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </ScrollView>
