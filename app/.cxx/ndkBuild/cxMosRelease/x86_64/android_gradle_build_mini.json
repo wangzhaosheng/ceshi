@@ -1,0 +1,18 @@
+{
+  "buildFiles": [
+    "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk",
+    "/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/lib clean"
+  ],
+  "buildTargetsCommand": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/lib {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "jni-test-cxMosRelease-x86_64": {
+      "artifactName": "jni-test",
+      "buildCommand": "/Users/wangzhaosheng/androidSDK/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/wangzhaosheng/ceshi/ceshi/app/src/main/java/jni/Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/obj NDK_LIBS_OUT\u003d/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/lib /Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/obj/local/x86_64/libjni-test.so",
+      "abi": "x86_64",
+      "output": "/Users/wangzhaosheng/ceshi/ceshi/app/build/intermediates/ndkBuild/cxMosRelease/obj/local/x86_64/libjni-test.so"
+    }
+  }
+}
