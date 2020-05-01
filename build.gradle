@@ -35,6 +35,14 @@ allprojects {
         maven{url 'https://maven.aliyun.com/repository/jcenter'}                  //jcenter()   的镜像
 
 
+        maven {
+            url 'http://192.168.1.199:8081/nexus/content/repositories/releases/'
+        }
+        maven {
+            url 'http://192.168.1.199:8081/nexus/content/repositories/snapshots/'
+        }
+
+
     }
 }
 

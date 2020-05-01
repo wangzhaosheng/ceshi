@@ -195,13 +195,13 @@ public class UtilActivity extends AppCompatActivity {
 
         List<SubscriptionInfo> list = SubscriptionManager.from(this).getActiveSubscriptionInfoList();
         for (SubscriptionInfo info : list) {
-            Log.d("Q_M", "ICCID-->" + info.getIccId());//898600810117F0001559
-            Log.d("Q_M", "subId-->" + info.getSubscriptionId());
-            Log.d("Q_M", "SimSlotIndex-->" + info.getSimSlotIndex());
-            Log.d("Q_M", "DisplayName-->" + info.getDisplayName());
-            Log.d("Q_M", "CarrierName-->" + info.getCarrierName());
-            Log.d("Q_M", "getNumber()-->" + info.getNumber());
-            Log.d("Q_M", "---------------------------------");
+            System.out.println("ICCID-->" + info.getIccId());//898600810117F0001559
+            System.out.println("subId-->" + info.getSubscriptionId());
+            System.out.println("SimSlotIndex-->" + info.getSimSlotIndex());
+            System.out.println("DisplayName-->" + info.getDisplayName());
+            System.out.println("CarrierName-->" + info.getCarrierName());
+            System.out.println("getNumber()-->" + info.getNumber());
+            System.out.println("---------------------------------");
 
         }
     }

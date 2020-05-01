@@ -29,6 +29,7 @@ import android.provider.Telephony;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
@@ -124,13 +125,22 @@ public class MainActivity extends AppCompatActivity {
 
         startService(new Intent(this, MyVpnService.class));
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.net.wifi.WIFI_AP_STATE_CHANGED");
-        registerReceiver(new HotsspotReceiver(), intentFilter);
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction("android.net.wifi.WIFI_AP_STATE_CHANGED");
+//        registerReceiver(new HotsspotReceiver(), intentFilter);
 
+
+        // 没有写的权限，去申请写的权限，会弹出对话框
+//        ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+//
+//        System.out.println("=========");
+//        startActivity(new Intent(this, CallSmsActivity.class));
 
     }
-
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
 
     /**
      * 获取录音文件的名称
@@ -167,32 +177,14 @@ public class MainActivity extends AppCompatActivity {
 ////        int jk = PermissionChecker.checkSelfPermission(this.getApplicationContext(), "Unknown(10005)");
 
 
-        int permissionGranted = PERMISSION_GRANTED;
-//        Toast.makeText(this, "电话:　" + i + "  短信: " + i1, Toast.LENGTH_LONG).show();
-//        Stetho stetho;
-//        String a = "AA";
-//        byte[] bytes = a.getBytes();
-//        System.out.println(bytes);
-
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_CALL);
-////        intent.setData(Uri.parse("tel:**61*" + "18201186417" + "%23")); // 无应答时进行呼叫转移
-////            intent.setData(Uri.parse("tel:**920" )); // 取消无应答时进行呼叫转移
-//            intent.setData(Uri.parse("tel:*92" + "18201186417" )); // 无应答时进行呼叫转移
-//        startActivity(intent);
-
-
-//        int i = "com.uusafe.emm.android".hashCode();
-//        String format = String.format(".%x", i);
-//        System.out.println(format);
-
-        int a = 1;
-
-        int b[] = new int[3];
-//        int [3] c={2,4,3};
 
 
     }
+    A a =(int b) -> b+2;
+    interface A{
+       int fun (int b);
+    }
+
 
 
     public void click100(View view) {

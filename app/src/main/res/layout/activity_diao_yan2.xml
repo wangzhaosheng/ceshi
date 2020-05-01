@@ -42,6 +42,31 @@
             android:layout_height="wrap_content"/>
 
 
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click201"
+            android:text="跳转热点页面"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click202"
+            android:text="跳系统更新页面"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click203"
+            android:text="跳wifi设置页面"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click204"
+            android:text="跳锁屏密码页面"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 </ScrollView>
