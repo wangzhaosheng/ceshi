@@ -1,3 +1,1 @@
-[armeabi-v7a] Compile++ thumb: jni-test <= test.cpp
-[armeabi-v7a] StaticLibrary  : libstdc++.a
-[armeabi-v7a] SharedLibrary  : libjni-test.so
+make: Nothing to be done for `jni-test'.

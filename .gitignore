@@ -10,9 +10,11 @@
 .DS_Store
 /build
 .cxx
+.cxx/
 /.cxx
 /captures
 .externalNativeBuild
 /sandbox-client.keystore
 /app/build.gradle
 *.keystore
+private.properties

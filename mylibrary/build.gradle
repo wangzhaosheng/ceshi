@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 21
+        targetSdkVersion 26
         versionCode 100000
         versionName '10000000.000'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
