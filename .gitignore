@@ -11,7 +11,7 @@
 /build
 .cxx
 .cxx/
-/.cxx
+/app/.cxx
 /captures
 .externalNativeBuild
 /sandbox-client.keystore
