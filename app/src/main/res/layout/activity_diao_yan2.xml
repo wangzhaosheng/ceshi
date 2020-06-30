@@ -67,6 +67,60 @@
             android:text="跳锁屏密码页面"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click205"
+            android:text="根据打电话action获取电话应用包名"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click224"
+            android:text="监听屏幕旋转广播"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click225"
+            android:text="获取是否有导航栏"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click226"
+            android:text="获取导航栏宽度"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click227"
+            android:text="负数右移"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click228"
+            android:text="获取当前设备录音信息"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click229"
+            android:text="补码的非"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click232"
+            android:text="获取文件下的list方法"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click233"
+            android:text="alarmManager定时任务"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 </ScrollView>

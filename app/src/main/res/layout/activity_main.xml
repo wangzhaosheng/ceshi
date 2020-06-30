@@ -92,4 +92,10 @@
         android:onClick="click93"
         android:text="获取通话记录" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click231"
+        android:text="算法页面" />
+
 </LinearLayout>

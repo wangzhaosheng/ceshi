@@ -7,86 +7,119 @@
     android:orientation="vertical"
     tools:context=".activity.UtilActivity">
 
-
-    <Button
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click11"
-        android:text="生成序列号" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click13"
-        android:text="打印手机卡的所有信息" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click11"
+                android:text="生成序列号" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click14"
-        android:text="关闭wifi热点" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click25"
-        android:text="获取录音时长" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click13"
+                android:text="打印手机卡的所有信息" />
 
 
-    <Button
-        android:onClick="click27"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="根据solotid调用发送短信接口" />
-    <Button
-        android:onClick="click28"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="调用vivo接口打开短信发送功能" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click14"
+                android:text="关闭wifi热点" />
 
-    <Button
-        android:onClick="click35"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="反射vivo subid获取imsi" />
-    <Button
-        android:onClick="click42"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="外拨电话" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click25"
+                android:text="获取录音时长" />
 
 
-    <Button
-        android:onClick="click53"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="获取wifi mac ,就是bssid, 实际不是wifi mac" />
-    <EditText
-        android:id="@+id/et_bssid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="显示bssid"
-        />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click27"
+                android:text="根据solotid调用发送短信接口" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click28"
+                android:text="调用vivo接口打开短信发送功能" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click35"
+                android:text="反射vivo subid获取imsi" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click42"
+                android:text="外拨电话" />
 
 
-    <Button
-        android:onClick="click110"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ssid, 实际不是bssid" />
-    <EditText
-        android:id="@+id/et_ssid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="显示ssid"
-        />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click53"
+                android:text="获取wifi mac ,就是bssid, 实际不是wifi mac" />
+
+            <EditText
+                android:id="@+id/et_bssid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="显示bssid" />
 
 
-    <Button
-        android:onClick="click71"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="获取真正wifi mac ,不是bssid" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click110"
+                android:text="ssid, 实际不是bssid" />
+
+            <EditText
+                android:id="@+id/et_ssid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="显示ssid" />
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click71"
+                android:text="获取真正wifi mac ,不是bssid" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click221"
+                android:text="打印imei" />
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click222"
+                android:text="获取当前包名" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click223"
+                android:text="获取机型如al00" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

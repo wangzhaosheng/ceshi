@@ -1,91 +1,45 @@
 package com.example.myapplication;
 
-import android.Manifest;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.database.ContentObserver;
 import android.database.Cursor;
 import android.media.MediaRecorder;
-import android.net.Uri;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
 import android.provider.BaseColumns;
 import android.provider.CallLog;
 import android.provider.Settings;
-import android.provider.Telephony;
-import android.service.notification.StatusBarNotification;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.PhoneStateListener;
-import android.telephony.SmsManager;
-import android.telephony.SubscriptionInfo;
-import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TimeUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ApnActivity;
 import com.example.myapplication.activity.DiaoYan2Activity;
 import com.example.myapplication.activity.DiaoYanActivity;
+import com.example.myapplication.suanfa.SuanFaActivity;
 import com.example.myapplication.activity.UtilActivity;
 import com.example.myapplication.mdmHuawei.HuaweiMdmActivity;
-import com.example.myapplication.sim.EmmAppOpsManager;
-import com.example.myapplication.wifi.HotsspotReceiver;
 import com.example.myapplication.wifi.WifiHotUtil;
 //import com.facebook.stetho.Stetho;
 //import com.facebook.stetho.common.Util;
-import com.google.gson.Gson;
 //import com.ola.android22.mylibrary.Utils;
-import com.tdtech.devicemanager.LocationPolicy;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeMap;
-
-import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -181,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     A a =(int b) -> b+2;
+
+    public void click231(View view) {
+
+        startActivity(new Intent(this, SuanFaActivity.class));
+    }
+
     interface A{
        int fun (int b);
     }

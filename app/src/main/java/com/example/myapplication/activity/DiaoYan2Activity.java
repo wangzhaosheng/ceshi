@@ -1,5 +1,9 @@
 package com.example.myapplication.activity;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.app.usage.UsageEvents;
 import android.app.usage.UsageStatsManager;
@@ -8,18 +12,44 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.graphics.Point;
+import android.media.AudioManager;
+import android.media.AudioRecordingConfiguration;
+import android.media.MediaRecorder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.example.myapplication.MyApplication;
 import com.example.myapplication.R;
 import com.uusafe.common.device.env.DevEnv;
+import com.zhizhangyi.platform.common.rtc.AlarmReceiver;
 
+import java.io.File;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 public class DiaoYan2Activity extends AppCompatActivity {
     private static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
@@ -30,6 +60,18 @@ public class DiaoYan2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diao_yan2);
+
+
+    }
+
+    private void hideNavigationBar() {
+
+        Toast.makeText(getApplicationContext(), "hideNavigationBar()", Toast.LENGTH_SHORT).show();
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     private MyBroadCastReceiver myBroadCastReceiver;
@@ -155,6 +197,271 @@ public class DiaoYan2Activity extends AppCompatActivity {
         }).start();
     }
 
+    public void click205(View view) {
+
+        queryPackage();
+    }
+
+
+    //查找所有  com.android.server.telecom
+    private void queryPackage() {
+        PackageManager manager = getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        Intent intent = new Intent(Intent.ACTION_CALL);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        intent.setData(Uri.parse("http://www.baidu.com"));
+//        List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+        List<ResolveInfo> infos = manager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+    }
+
+    public void click224(View view) {
+        // TODO: 2020-05-29 经测试  这玩意不好使  屏幕旋转广播经常不生效. 在华为畅享平板测试
+
+        BroadcastReceiver broadcastReceive = new AABroadcastReceive();
+//注册广播接收,注意：要监听这个系统广播就必须用这种方式来注册，不能再xml中注册，否则不能生效
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.intent.action.CONFIGURATION_CHANGED");
+        registerReceiver(broadcastReceive, filter);
+
+        int b = 2;
+        int i = b ^ b;
+        String m = "a";
+        System.out.println("i: " + i);
+        if (b == 5 & i == 4) {
+            System.out.println("-------");
+        }
+        int a = 3;
+        int c = a & b;
+        System.out.println("c: " + c);
+        char v = 'a';
+
+    }
+
+    public void click225(View view) {
+
+        //todo 1普通方法  vivo好使
+//        boolean navigationBarShow = hasNavBar(this);
+//        Toast.makeText(this, navigationBarShow ? "有导航栏" : "没有导航栏", 1).show();
+
+        //todo 2小米的  经测试好使
+//        boolean isMiuiFullScreen = isMiuiFullScreen(this);
+//        Toast.makeText(this, isMiuiFullScreen ? "没导航栏" : "有导航栏", 1).show();
+
+        //todo 3 华为的  经测试好使
+        boolean isHuaWeiHideNav = isHuaWeiHideNav(this);
+        Toast.makeText(this, isHuaWeiHideNav ? "没导航栏" : "有导航栏", 1).show();
+    }
+
+    public void click226(View view) {
+        int navigationBarHeight = getNavigationBarHeight(MyApplication.getContext());
+
+        Toast.makeText(this, "导航栏宽度px" + navigationBarHeight, 1).show();
+        System.out.println("导航栏宽度px" + navigationBarHeight);
+    }
+
+    /**
+     * 华为手机是否隐藏了虚拟导航栏
+     *
+     * @return true 表示隐藏了，false 表示未隐藏
+     */
+    private boolean isHuaWeiHideNav(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return Settings.System.getInt(context.getContentResolver(), "navigationbar_is_min", 0) != 0;
+        } else {
+            return Settings.Global.getInt(context.getContentResolver(), "navigationbar_is_min", 0) != 0;
+        }
+    }
+
+    /**
+     * 小米手机是否开启手势操作
+     *
+     * @return true 表示使用的是手势，false 表示使用的是虚拟导航栏(NavigationBar)，默认是false
+     */
+    private boolean isMiuiFullScreen(Context context) {
+        return Settings.Global.getInt(context.getContentResolver(), "force_fsg_nav_bar", 0) != 0;
+    }
+
+    /**
+     * 判断是否隐藏虚拟按键
+     *
+     * @return
+     */
+    public boolean isNavigationBarShow() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            WindowManager manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+            if (null == manager) {
+                return false;
+            }
+            Display display = manager.getDefaultDisplay();
+            Point size = new Point();
+            Point realSize = new Point();
+            display.getSize(size);
+            display.getRealSize(realSize);
+            return realSize.y != size.y;
+        } else {
+            boolean menu = ViewConfiguration.get(this).hasPermanentMenuKey();
+            boolean back = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+            if (menu || back) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * 判断是否有NavigationBar
+     * todo 金光s6上测试不好使.开不开起导航栏,都获取到true . 开不开导航栏获取到的屏幕显示高度都一样
+     *
+     * @param activity
+     * @return
+     */
+    public boolean checkHasNavigationBar(Context activity) {
+//        WindowManager windowManager = activity.getWindowManager();
+        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display d = windowManager.getDefaultDisplay();
+
+        DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            d.getRealMetrics(realDisplayMetrics);
+        }
+
+        int realHeight = realDisplayMetrics.heightPixels;
+        int realWidth = realDisplayMetrics.widthPixels;
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        d.getMetrics(displayMetrics);
+
+        int displayHeight = displayMetrics.heightPixels;
+        int displayWidth = displayMetrics.widthPixels;
+
+        return (realWidth - displayWidth) > 0 || (realHeight - displayHeight) > 0;
+    }
+
+
+    /**
+     * 检查是否存在虚拟按键栏
+     * todo 这个金光s6测试好使, 小米手机测试不好使
+     */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private static boolean hasNavBar(Context context) {
+        Resources res = context.getResources();
+        int resourceId = res.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (resourceId != 0) {
+            boolean hasNav = res.getBoolean(resourceId);
+            String sNavBarOverride = getNavBarOverride();
+            if ("1".equals(sNavBarOverride)) {
+                hasNav = false;
+            } else if ("0".equals(sNavBarOverride)) {
+                hasNav = true;
+            }
+            return hasNav;
+        } else {
+            return !ViewConfiguration.get(context).hasPermanentMenuKey();
+        }
+    }
+
+
+    /**
+     * 判断虚拟按键栏是否重写
+     */
+    private static String getNavBarOverride() {
+        String sNavBarOverride = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                Class c = Class.forName("android.os.SystemProperties");
+                Method m = c.getDeclaredMethod("get", String.class);
+                m.setAccessible(true);
+                sNavBarOverride = (String) m.invoke(null, "qemu.hw.mainkeys");
+            } catch (Exception e) {
+            }
+        }
+        return sNavBarOverride;
+    }
+
+
+    /**
+     * 获得NavigationBar的高度
+     * todo 在金光s6上测试.无论有没有开启导航.都能获取到高度
+     */
+    public static int getNavigationBarHeight(Context activity) {
+
+        int result = 0;
+        if (hasNavBar(activity)) {
+            Resources res = activity.getResources();
+            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = res.getDimensionPixelSize(resourceId);
+            }
+        }
+        return result;
+
+//        int result = 0;
+//        Resources resources = activity.getResources();
+//        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+//        if (resourceId > 0 && checkHasNavigationBar(activity)) {
+//            result = resources.getDimensionPixelSize(resourceId);
+//        }
+//        return result;
+    }
+
+    public void click227(View view) {
+
+        int a = -106;
+        int i = a >> 1;
+        System.out.println("+++" + i);
+        int c=4;
+        int d=5;
+        int [] b={c,d};
+    }
+
+
+
+
+    public void click228(View view) {
+        //https://developer.android.com/guide/topics/media/sharing-audio-input?hl=zh-cn
+        AudioManager   mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //
+        //Added in API level 24
+        List<AudioRecordingConfiguration> activeRecordingConfigurations = mAudioManager.getActiveRecordingConfigurations();
+        System.out.println(activeRecordingConfigurations);
+    }
+
+    public void click229(View view) {
+
+        int a =-5;
+        int i = a / 2;
+        Toast.makeText(this,i+"",1).show();
+    }
+
+    public void click232(View view) {
+
+        File file = new File("/sdcard/uusafe/emm_android/logcat/2.1.0.3");
+        String[] list = file.list();
+        System.out.println(Arrays.toString(list));
+    }
+
+    public void click233(View view) {
+
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        //int anHour = 10* 1000; // 10秒
+        int anHour = 1000; // 1秒
+        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
+        //要跳转的广播
+        Intent i = new Intent(this, AlarmReceiver.class);
+        //通过PendingIntent跳转  这里不多做解释
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
+        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
+    }
+
+    class AABroadcastReceive extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("屏幕旋转了");
+        }
+    }
 
     private class MyBroadCastReceiver extends BroadcastReceiver {
         //https://blog.csdn.net/ljphhj/article/details/39481411
@@ -255,18 +562,18 @@ public class DiaoYan2Activity extends AppCompatActivity {
 
     }
 
-    Function<Integer, String> fun = (integer) -> String.valueOf(integer + "222");
-
-    Function<String, Integer> fun1 = new Function<String, Integer>() {
-        @Override
-        public Integer apply(String string) {
-            return Integer.parseInt(string);
-        }
-    };
+//    Function<Integer, String> fun = (integer) -> String.valueOf(integer + "222");
+//
+//    Function<String, Integer> fun1 = new Function<String, Integer>() {
+//        @Override
+//        public Integer apply(String string) {
+//            return Integer.parseInt(string);
+//        }
+//    };
 
     public void click133(View view) {
 
-        Function<String, String> compose = fun.compose(fun1);
+//        Function<String, String> compose = fun.compose(fun1);
 
     }
 

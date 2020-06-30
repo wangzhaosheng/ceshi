@@ -38,5 +38,4 @@ import java.text.SimpleDateFormat
 //}
 //todo 以上所有代码都是生命周期耗时统计------------
 
-
 include ':app', ':mylibrary', ':lib'

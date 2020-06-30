@@ -2,8 +2,11 @@ package com.example.myapplication.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +18,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.BaseColumns;
 import android.provider.CallLog;
 import android.provider.Telephony;
@@ -457,7 +461,8 @@ public class UtilActivity extends AppCompatActivity {
     }
 
 
-int i;
+    int i;
+
     public void click42(View view) {
 
 
@@ -471,7 +476,7 @@ int i;
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // 无ismi时使用默认
 //        if (slotId != -1) {
-            intent.putExtra(dualSimTypes[i], 0);
+//            intent.putExtra(dualSimTypes[i], 0);
 //        }
         Uri data = Uri.parse("tel:" + 10086);
         intent.setData(data);
@@ -486,7 +491,8 @@ int i;
 
     /**
      * wifiName
-     *  todo 获取的是bssid   不是 wifi mac地址
+     * todo 获取的是bssid   不是 wifi mac地址
+     *
      * @param context
      * @return
      */
@@ -538,5 +544,57 @@ int i;
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    public void click221(View view) {
+        getDeviceIdFromTelephony(this);
+    }
+
+    /**
+     * 将DeviceID存到sp,解决双卡双待手机，不确定获取的IMEI或者MEID两个值，经过保存后，保证值的为一
+     */
+    public static String getDeviceIdFromTelephony(Context context) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) { // > 4.4
+                Method m = TelephonyManager.class.getMethod("getImei");
+                m.setAccessible(true);
+                String imei = (String) m.invoke(telephonyManager);
+                System.out.println("default imei: " + imei);
+                if (!TextUtils.isEmpty(imei)) return imei;
+            }
+
+            return telephonyManager.getDeviceId();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void click222(View view) throws InterruptedException {
+        while (!isDestroyed()){
+            String topPacakge = getTopPacakge(this);
+            System.out.println("当前包名: " + topPacakge);
+            Thread.sleep(1000);
+        }
+    }
+
+    public static String getTopPacakge(Context mContext) {
+
+        try {
+            ActivityManager am = (ActivityManager) mContext
+                    .getSystemService(Activity.ACTIVITY_SERVICE);
+            ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+            return cn.getPackageName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public void click223(View view) {
+
+        System.out.println("手机型号机型: "+Build.MODEL);
     }
 }
