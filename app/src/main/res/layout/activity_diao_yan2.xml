@@ -77,6 +77,11 @@
             android:onClick="click224"
             android:text="监听屏幕旋转广播"
             android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click234"
+            android:text="获取手机型号如 Redmi 8A"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:layout_width="match_parent"
@@ -119,6 +124,14 @@
             android:layout_width="match_parent"
             android:onClick="click233"
             android:text="alarmManager定时任务"
+            android:layout_height="wrap_content"/>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="click235"
+            android:text="vivo手机后台高耗电限制应用"
             android:layout_height="wrap_content"/>
 
 

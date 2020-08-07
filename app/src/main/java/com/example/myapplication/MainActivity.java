@@ -42,6 +42,9 @@ import java.util.TimeZone;
 import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     /**
      * 音频录制
      */
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewById = findViewById(R.id.textView);
+        System.out.println(System.currentTimeMillis()+"-------");
 /**
  * 在activity 或者 service中加入如下代码，以实现来电状态监听
  */
@@ -107,13 +111,13 @@ public class MainActivity extends AppCompatActivity {
         return currentFile;
     }
 
-    Handler handler;
+    Handler handler= new Handler();
     WifiHotUtil wifiHotUtil;
 
     public void click99(View v) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException {
-        String address = BluetoothAdapter.getDefaultAdapter().getAddress();
-        System.out.println("==========" + address);
-        BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
+//        String address = BluetoothAdapter.getDefaultAdapter().getAddress();
+//        System.out.println("==========" + address);
+//        BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
 //        startActivity(new Intent(this,SecondActivity.class));
 
 //        int call = ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.READ_CALL_LOG);
@@ -129,9 +133,8 @@ public class MainActivity extends AppCompatActivity {
 //        int i2 = PermissionChecker.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
 //        int i1 = PermissionChecker.checkSelfPermission(this.getApplicationContext(), Manifest.permission.READ_SMS);
 ////        int jk = PermissionChecker.checkSelfPermission(this.getApplicationContext(), "Unknown(10005)");
-
-
-
+        int i = -123 % 10;
+        System.out.println("+++++"+i);
 
     }
     A a =(int b) -> b+2;
@@ -156,25 +159,19 @@ public class MainActivity extends AppCompatActivity {
 //        dialIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        startActivity(dialIntent);
 
-        Date date = new Date();
-        DateFormat format = new SimpleDateFormat("HH:mm");
-        String format1 = format.format(date);
-        System.out.println(format1);
+        ex();
 
-        String a = "16:12";
-        Date dt1 = null;//将字符串转换为date类型
-        try {
-            dt1 = format.parse(format1);
-            Date dt2 = format.parse(a);
-            boolean b = dt1.getTime() > dt2.getTime();
-            if (b) { //比较时间大小,如果dt1大于dt2
+    }
 
+    void ex(){
+        handler.removeCallbacksAndMessages(null);
+        System.out.println("-----------=========");
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ex();
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
+        },1000);
     }
 
 

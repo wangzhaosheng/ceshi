@@ -35,6 +35,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.activity.FingerActivity;
+import com.example.myapplication.suanfa.TreeNode;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,7 +83,7 @@ public class CallSmsActivity extends AppCompatActivity {
 //                "simid",
         };
         String sortOrder = BaseColumns._ID + " desc limit 10 ";
-        Cursor cursor = resolver.query(CallLog.Calls.CONTENT_URI, null, null, null, sortOrder);
+        Cursor cursor = resolver.query(CallLog.Calls.CONTENT_URI, null, null, null, null);
 
         int count = cursor.getCount();
         int columnCount = cursor.getColumnCount();
@@ -458,7 +459,8 @@ public class CallSmsActivity extends AppCompatActivity {
                 String.valueOf(130),//接收方接收的试探彩信剔除
                 String.valueOf(134) //发送方收的的回执剔除
         };
-        Cursor cursor = resolver.query(Telephony.Mms.CONTENT_URI, null, selection, selectionArgs, sortOrder);
+//        Cursor cursor = resolver.query(Telephony.Mms.CONTENT_URI, null, selection, selectionArgs, sortOrder);
+        Cursor cursor = resolver.query(Telephony.Mms.CONTENT_URI, null, null, null, sortOrder);
 
         int count = cursor.getCount();
         int columnCount = cursor.getColumnCount();
@@ -1312,4 +1314,9 @@ public class CallSmsActivity extends AppCompatActivity {
             db.execSQL(createSql);
         }
     }
+
+//    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+//
+//
+//    }
 }

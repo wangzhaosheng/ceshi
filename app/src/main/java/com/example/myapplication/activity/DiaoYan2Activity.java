@@ -22,6 +22,7 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -37,8 +38,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.MyApplication;
 import com.example.myapplication.R;
-import com.uusafe.common.device.env.DevEnv;
-import com.zhizhangyi.platform.common.rtc.AlarmReceiver;
+//import com.uusafe.common.device.env.DevEnv;
+//import com.zhizhangyi.platform.common.rtc.AlarmReceiver;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -144,18 +145,21 @@ public class DiaoYan2Activity extends AppCompatActivity {
     }
 
     public static boolean isHuaWeiRom() {
-        return DevEnv.Model.isRom(DevEnv.Model.EROM_HUAWEI) ||
-                DevEnv.Model.isRom(DevEnv.Model.EROM_HUAWEI_EMUI_3)
-                ;
+//        return DevEnv.Model.isRom(DevEnv.Model.EROM_HUAWEI) ||
+//                DevEnv.Model.isRom(DevEnv.Model.EROM_HUAWEI_EMUI_3)
+//                ;
+        return true;
     }
 
 
     public static boolean isVivoRom() {
-        return DevEnv.Model.isRom(DevEnv.Model.EROM_VIVO);
+//        return DevEnv.Model.isRom(DevEnv.Model.EROM_VIVO);
+        return true;
     }
 
     public static boolean isOppoRom() {
-        return DevEnv.Model.isRom(DevEnv.Model.EROM_OPPO);
+//        return DevEnv.Model.isRom(DevEnv.Model.EROM_OPPO);
+        return true;
     }
 
     /**
@@ -238,6 +242,12 @@ public class DiaoYan2Activity extends AppCompatActivity {
 
     }
 
+    //todo 获取手机型号
+    public void click234(View view) {
+
+        System.out.println("手机型号机型: "+Build.MODEL);
+    }
+
     public void click225(View view) {
 
         //todo 1普通方法  vivo好使
@@ -245,12 +255,12 @@ public class DiaoYan2Activity extends AppCompatActivity {
 //        Toast.makeText(this, navigationBarShow ? "有导航栏" : "没有导航栏", 1).show();
 
         //todo 2小米的  经测试好使
-//        boolean isMiuiFullScreen = isMiuiFullScreen(this);
-//        Toast.makeText(this, isMiuiFullScreen ? "没导航栏" : "有导航栏", 1).show();
+        boolean isMiuiFullScreen = isMiuiFullScreen(this);
+        Toast.makeText(this, isMiuiFullScreen ? "没导航栏" : "有导航栏", 1).show();
 
         //todo 3 华为的  经测试好使
-        boolean isHuaWeiHideNav = isHuaWeiHideNav(this);
-        Toast.makeText(this, isHuaWeiHideNav ? "没导航栏" : "有导航栏", 1).show();
+//        boolean isHuaWeiHideNav = isHuaWeiHideNav(this);
+//        Toast.makeText(this, isHuaWeiHideNav ? "没导航栏" : "有导航栏", 1).show();
     }
 
     public void click226(View view) {
@@ -444,15 +454,26 @@ public class DiaoYan2Activity extends AppCompatActivity {
 
     public void click233(View view) {
 
-        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        //int anHour = 10* 1000; // 10秒
-        int anHour = 1000; // 1秒
-        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
-        //要跳转的广播
-        Intent i = new Intent(this, AlarmReceiver.class);
-        //通过PendingIntent跳转  这里不多做解释
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
-        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
+    }
+
+    public void click235(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("后台执行--------");
+            }
+        }).start();
+        ccc();
+    }
+    Handler handler = new Handler();
+    private void ccc() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("定时任务执行----");
+                ccc();
+            }
+        }, 90000);
     }
 
     class AABroadcastReceive extends BroadcastReceiver {

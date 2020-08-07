@@ -1,5 +1,6 @@
 package com.example.myapplication.suanfa;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,10 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -20,8 +24,22 @@ public class SuanFaActivity extends AppCompatActivity {
     }
 
     public void click230(View view) {
-        boolean valid = isValid2("(({}}))");
-        Toast.makeText(this, valid + "", 1).show();
+//        boolean valid = isValid2("(({}}))");
+//        Toast.makeText(this, valid + "", 1).show();
+//        TreeNode treeNode1 = new TreeNode(1);
+//        TreeNode treeNode2 = new TreeNode(2);
+//        TreeNode treeNode3 = new TreeNode(3);
+//        TreeNode treeNode4 = new TreeNode(4);
+//        TreeNode treeNode5 = new TreeNode(5);
+//
+//        treeNode1.left =treeNode2;
+//        treeNode1.right=treeNode3;
+//        treeNode2.left=treeNode4;
+//        treeNode2.right=treeNode5;
+//        diameterOfBinaryTree(treeNode1);
+
+        int a[] = {2, 1};
+        findUnsortedSubarray(a);
     }
 
 
@@ -138,12 +156,12 @@ public class SuanFaActivity extends AppCompatActivity {
     //todo 爬楼梯问题  https://leetcode-cn.com/problems/climbing-stairs/  重做一遍
 
 
-    //todo 判断环形链表  https://leetcode-cn.com/problems/linked-list-cycle/ 思路是判断节点的地址是否出现过,思路惊奇
     class ListNode {
         int val;
         ListNode next;
     }
 
+    //todo 判断环形链表  https://leetcode-cn.com/problems/linked-list-cycle/ 思路是判断节点的地址是否出现过,思路惊奇
     public boolean hasCycle(ListNode head) {
         HashMap map = new HashMap();
         while (head != null) {
@@ -198,18 +216,18 @@ public class SuanFaActivity extends AppCompatActivity {
 
     }
 
-    //求数组最大和,不能取相邻的数据  https://leetcode-cn.com/problems/house-robber/
+    //求数组最大和,不能取相邻的数据  https://leetcode-cn.com/problems/house-robber/  todo 再刷  没过
     public int rob(int[] nums) {
         int len = nums.length;
-        if(len==1){
+        if (len == 1) {
             return nums[0];
         }
         int index = 0;
-        int sum = 0
+        int sum = 0;
         while (index < len) {
             int current = nums[index];
-            if(index == len-1){
-                sum+=current;
+            if (index == len - 1) {
+                sum += current;
                 break;
             }
             //没有越界 倒数第二位就停止了
@@ -219,15 +237,298 @@ public class SuanFaActivity extends AppCompatActivity {
             }
             int next = nums[index + 1];
             if (next > current + nums[index + 2]) {
-                sum+=next;
-                index+=3;
-            }else {
-                sum+=current;
-                index+=2;
+                sum += next;
+                index += 3;
+            } else {
+                sum += current;
+                index += 2;
             }
 
 
         }
         return sum;
     }
+
+    // 判断回文链表  https://leetcode-cn.com/problems/palindrome-linked-list/
+
+    public boolean isPalindrome(ListNode head) {
+
+//        Stack<ListNode> stack = new Stack();
+//        while (head != null) {
+//            if(!stack.isEmpty()){
+//                if(stack.peek().val == head.val){ todo 错误解法:不能用边遍历边抵消的思维   比如特例 1444444444331
+//                    stack.pop();
+//                    continue;
+//                }
+//            }
+//            stack.push(head);
+//            head = head.next;
+//        }
+//        return stack.isEmpty();
+
+        LinkedList<ListNode> linkedList = new LinkedList<>();
+        while (head != null) {
+            linkedList.add(head);
+            head = head.next;
+        }
+        while (linkedList.size() > 1) { //todo 有一个元素也算是对称的.....  不是必须偶数个元素
+            ListNode node = linkedList.removeFirst();
+            if (!(!linkedList.isEmpty() && node.val == linkedList.removeLast().val)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    //https://leetcode-cn.com/problems/path-sum-iii/  二叉树路径和等于指定的数  todo 再刷
+    int num = 0;
+
+    public int pathSum(TreeNode root, int sum) {
+
+        if (root == null) {
+            return sum == 0 ? 1 : 0;
+        }
+
+        int equalsNum = sum(root, 0, sum);
+        num += equalsNum;
+        pathSum(root.left, sum);
+        pathSum(root.right, sum);
+        return num;
+    }
+
+    int sum(TreeNode curNode, int curSum, int sum) {
+        if (curNode == null) {
+            return 0;
+        }
+        int newSum = curNode.val + curSum;
+
+        int times = sum(curNode.left, newSum, sum) + sum(curNode.right, newSum, sum);
+
+        return (newSum == sum) ? (times + 1) : times;//todo 路径和即使等于指定数字后,后面的还要继续加,后面的数字的和为0也满足条件. 路径和大于了指定数也要继续加,后面可能为负数
+    }
+
+//    [5,4,8,11,null,13,4,7,2,null,null,5,1]
+//            22
+
+    //https://leetcode-cn.com/problems/path-sum-iii/  二叉树路径和等于指定的数 第二种解法  todo 再刷
+    int number;
+    //key 所有的和  value  每一个和的个数
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    public int pathSum2(TreeNode root, int sum) {
+        if (root == null) {
+            return 0;
+        }
+        map.put(0, 1);//todo 前缀和的概念  这个很重要. 每个节点都是一个路径. 默认有一个前缀和为0的数据
+        return curSum(root, sum, 0);
+
+
+    }
+
+    public int curSum(TreeNode node, int sum, int curSum) {
+        if (node == null) {
+            return number;
+        }
+        int newSum = curSum + node.val;
+        Integer times = map.get(newSum - sum);
+        if (times != null) {
+            number += times;
+        }
+        //这个和的个数
+        Integer integer = map.get(newSum);
+        if (integer == null) {
+            integer = 0;
+        }
+
+        map.put(newSum, integer + 1);
+
+        curSum(node.left, sum, newSum);
+
+
+        curSum(node.right, sum, newSum);
+
+        map.put(newSum, integer);
+        return number;
+    }
+
+    //https://leetcode-cn.com/problems/convert-bst-to-greater-tree/   把二叉搜索树转换为累加树  todo 逻辑绕  重新刷
+    public TreeNode convertBST(TreeNode root) {
+
+        preSum(root, 0);
+
+        return root;
+
+    }
+
+    private int preSum(TreeNode node, int sum) {
+        if (node == null) {
+            return sum;
+        }
+
+        int rightSum = preSum(node.right, sum);
+
+        node.val = node.val + rightSum;
+
+        int leftSum = preSum(node.left, node.val);
+
+        return leftSum;
+
+    }
+
+    int maxLength;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return maxLength;
+        }
+        diameterOfBinaryTree(root.left);
+        int currentLeftLength = maxLength(root.left);
+        int currentRightLength = maxLength(root.right);
+        int currentAllLength = currentLeftLength + currentRightLength + 2;
+        maxLength = maxLength > currentAllLength ? maxLength : currentAllLength;
+        diameterOfBinaryTree(root.right);
+        return maxLength;
+
+    }
+
+    public int maxLength(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftLength = maxLength(node.left);
+        int rightLength = maxLength(node.right);
+        return Math.max(leftLength, rightLength) + 1;
+    }
+
+    public int findUnsortedSubarray(int[] nums) {
+        int leftMaxIndex = -1;
+        int curNum = nums[0];
+
+        for (int num : nums) {
+
+            if (curNum > num) {
+                break;
+            }
+            leftMaxIndex++;
+            curNum = num;
+
+        }
+        int length = nums.length;
+        int rightMinIndex = length;
+        int curNum2 = nums[length - 1];
+        for (int i = length - 1; i >= 0; i--) {
+
+            if (curNum2 < nums[i]) {
+                break;
+            }
+            rightMinIndex--;
+            curNum2 = nums[i];
+
+        }
+
+        if (leftMaxIndex >= rightMinIndex) {
+            return 0;
+        }
+        int minInRange = nums[leftMaxIndex + 1];
+        int maxInRange = nums[leftMaxIndex + 1];
+        for (int j = leftMaxIndex + 1; j <= rightMinIndex - 1; j++) {
+            int cur = nums[j];
+            if (cur > maxInRange) {
+                maxInRange = cur;
+            }
+            if (cur < minInRange) {
+                minInRange = cur;
+            }
+        }
+        int answerLeft = leftMaxIndex + 1;
+        if (leftMaxIndex == -1) {
+            answerLeft = 0;
+        } else {
+
+            int realMin = Math.min(minInRange, nums[rightMinIndex == length ? rightMinIndex - 1 : rightMinIndex]);// TODO: 2020-07-18
+            for (int m = leftMaxIndex; m > 0; m--) {
+                if (nums[m - 1] <= realMin) {
+                    answerLeft = m;
+                    break;
+                }
+            }
+        }
+
+        int answerRight = rightMinIndex - 1;
+        if (rightMinIndex == length) {
+            answerRight = length - 1;
+        } else {
+            int realMax = Math.max(maxInRange, nums[leftMaxIndex == -1 ? 0 : leftMaxIndex]);
+            for (int n = rightMinIndex; n < length - 1; n++) { // TODO: 2020-07-18
+                if (nums[n + 1] >= realMax) {
+                    answerRight = n;
+                    break;
+                }
+            }
+        }
+
+        return answerRight - answerLeft + 1;
+
+
+    }
+
+//    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+//
+//    }
+
+    public int removeDuplicates(int[] nums) {
+
+        if (nums.length == 0) {
+            return 0;
+        }
+        int validIndex = 0;
+        for (int i : nums) {
+            if (i == nums[validIndex]) {
+                continue;
+            }
+            nums[++validIndex] = i;
+        }
+
+        return validIndex + 1;
+    }
+
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        int i = len - 1;
+        while (i >= 0) {
+            if (digits[i] == 9) {
+                digits[i] = 0;
+                i--;
+
+            } else {
+                digits[i]++;
+                break;
+            }
+        }
+        if (i == -1) {
+            int[] array = new int[len + 1];
+            System.arraycopy(digits, 0, array, 1, len);
+            array[0]=1;
+            return array;
+        }
+        return digits;
+    }
+
+    public int[] plusOne1(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] = digits[i] % 10;
+            if (digits[i] != 0) return digits;
+        }
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+
+//    public int mySqrt(int x) {
+//
+//    }
+
+
 }
